@@ -71,7 +71,7 @@ export default function Layout({ children, title }) {
                   </button>
                 </div>
               </Transition.Child>
-              <Sidebar />
+              <Sidebar navigation={navigation} />
             </div>
           </Transition.Child>
           <div className="flex-shrink-0 w-14">
@@ -84,12 +84,12 @@ export default function Layout({ children, title }) {
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64">
           <aside className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
-            <Sidebar navigation={navigation} setSidebarOpen={setSidebarOpen} />
+            <Sidebar navigation={navigation}  />
           </aside>
         </div>
       </div>
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
-        <OpenSidebar />
+        <OpenSidebar setSidebarOpen={setSidebarOpen} />
         <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
           <div className="py-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
