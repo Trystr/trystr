@@ -1,0 +1,57 @@
+.header{
+    background:var(--bg-color)
+}
+
+.heading-text{
+    margin: 1em;
+    font-weight: bold;
+    color: var(--header-color)
+}
+
+.subheading-text{
+    margin: 0;
+    color: var(--text-color)
+}
+
+.profile-box{
+    width: 30%;
+}
+
+.nav-box{
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+.profile-list-item{
+    list-style: none;
+    margin: 2em 0;
+}
+
+.profile-link{
+    color: var(--link-accent-color);
+    text-decoration: none;
+}
+
+
+.footer-container{
+    margin-bottom: 3em;
+    font-weight: bold;
+    color: var(--text-color)
+}
+
+.footer-content{
+    background: var(--bg-color);
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-text{
+    color: var(--text-color);
+}
+
+.footer-link{
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1em;
+}
