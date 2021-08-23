@@ -7,6 +7,7 @@ import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Profile } from "./profile";
 import clsx from "clsx";
 import { Logo } from "./logo";
+import { LogoutButton } from "../components/auth";
 
 export function OpenSidebar({ setSidebarOpen }) {
   return (
@@ -70,6 +71,7 @@ export function Sidebar({ navigation }) {
           {navigation.map((item) => (
             <SidebarLink key={item.name} {...item} />
           ))}
+          <LogoutButton />
         </nav>
       </div>
       <Profile />
