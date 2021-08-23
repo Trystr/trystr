@@ -37,3 +37,23 @@
 .profile-information{
     display: flex;
 }
+
+.search{
+    position: relative;
+}
+
+.search-box{
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding-left: 24px;
+    width: 100%;
+    min-width: 200px;
+    margin: 0 2em;
+}
+
+.search-icon{
+    position: absolute;
+    left: 3em;
+    top: .56em;
+    font-size: 12px;
+}

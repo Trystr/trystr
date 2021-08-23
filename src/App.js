@@ -2,7 +2,7 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from "react-router-dom";
 import About from './About/About';
 import Home from './Home/Home';
@@ -15,17 +15,22 @@ function App() {
     <Router>
       <div className="App">
         <Header />
-        <div className="flex-container">
-          <ProfileBox />
-          <div className="content">
-            <Router>
+        <Router>
+          <div className="flex-container">
+            <ProfileBox />
+            <div className="content">
               <Switch>
-                <Route path="/" component={Home} />
-                <Route path="/about" component={About} />
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route path="/about">
+                  <About />
+                </Route>
+                
               </Switch>
-            </Router>
+            </div>
           </div>
-        </div>
+        </Router>
         <Footer />
       </div>
     </Router>

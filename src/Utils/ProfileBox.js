@@ -1,22 +1,18 @@
 import "./Utils.css";
-import {
-  BrowserRouter as Router,
-  Link
-} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 function ProfileBox() {
   return (
     <div className="profile-box">
-      <Router>
         <nav className="nav-box">
           <ul>
             <li className="profile-list-item">
-              <Link to="/" className="profile-link">
+                          <Link to="/" className="profile-link">
                 Home
               </Link>
             </li>
             <li className="profile-list-item">
-              <Link to="/about" className="profile-link">
+                          <Link to="/about" className="profile-link">
                 About
               </Link>
             </li>
@@ -32,7 +28,6 @@ function ProfileBox() {
             </li>
           </ul>
         </nav>
-      </Router>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import "../App.css";
 import "./feed.css";
 import Content from '../assets/content.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeartBroken, faHeart, faDollarSign } from "@fortawesome/free-solid-svg-icons";
+import { faHeartBroken, faHeart, faDollarSign, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faComment} from "@fortawesome/free-regular-svg-icons";
 import { useState } from 'react';
 
@@ -11,6 +11,7 @@ function Feed() {
     const [heartSelected, updateHeartSelected] = useState({});
     const [commentMade, updateCommentMade] = useState({});
     const [paymentMade, updatePayment] = useState({});
+    const [search, updateSearch] = useState('');
 
    function checkValue(property, idx){
         if (property === 'heart') {
@@ -29,79 +30,81 @@ function Feed() {
         }
     }
   return (
-      <div>
-          This is where the feed of content goes
-          {mapping.map((_, idx) => {
-              return (
-                <div className="album-item" key={`heart-${idx}`}>
-                  <div className="profile-information">User information</div>
-                  <div className="post-description">Description</div>
-                  <img src={Content} alt="Dog" />
-                  <div className="interaction-container">
-                    <FontAwesomeIcon
-                      className="heart-icon"
-                      icon={
-                        checkValue('heart', idx)
-                          ? faHeart
-                          : faHeartBroken
-                      }
-                      style={{
-                        color:
-                          checkValue('heart', idx)
-                            ? "red"
-                            : "black",
-                      }}
-                      onClick={() => {
-                        if (
-                          checkValue('heart', idx)
-                        ) {
-                          updateHeartSelected({
-                            ...heartSelected,
-                            [`heart-${idx}`]: false,
-                          });
-                        } else {
-                          updateHeartSelected({
-                            ...heartSelected,
-                            [`heart-${idx}`]: true,
-                          });
-                        }
-                      }}
-                    />
+    <div>
+      <div className="search">
+        <FontAwesomeIcon icon={faSearch} className="search-icon"/>
+              <input className='search-box' placeholder="Search Text" onChange={(e) => updateSearch(e.target.value)} value={search}/>
+      </div>
+      {mapping.map((_, idx) => {
+        return (
+          <div className="album-item" key={`heart-${idx}`}>
+            <div className="profile-information">User information</div>
+            <div className="post-description">Description</div>
+            <img src={Content} alt="Dog" />
+            <div className="interaction-container">
+              <FontAwesomeIcon
+                className="heart-icon"
+                icon={checkValue("heart", idx) ? faHeart : faHeartBroken}
+                style={{
+                  color: checkValue("heart", idx) ? "red" : "black",
+                }}
+                onClick={() => {
+                  if (checkValue("heart", idx)) {
+                    updateHeartSelected({
+                      ...heartSelected,
+                      [`heart-${idx}`]: false,
+                    });
+                  } else {
+                    updateHeartSelected({
+                      ...heartSelected,
+                      [`heart-${idx}`]: true,
+                    });
+                  }
+                }}
+              />
 
-                    <FontAwesomeIcon
-                      className="comment-icon"
-                      icon={faComment}
-                      style={{
-                        color:
-                          checkValue('comment', idx) ? "red" : "black",
-                      }}
-                      onClick={() => {
-                        if (checkValue('comment', idx)) {
-                          updateCommentMade({ ...commentMade, [`comment-${idx}`]: false });
-                        } else {
-                          updateCommentMade({ ...commentMade, [`comment-${idx}`]: true });
-                        }
-                      }}
-                    />
+              <FontAwesomeIcon
+                className="comment-icon"
+                icon={faComment}
+                style={{
+                  color: checkValue("comment", idx) ? "red" : "black",
+                }}
+                onClick={() => {
+                  if (checkValue("comment", idx)) {
+                    updateCommentMade({
+                      ...commentMade,
+                      [`comment-${idx}`]: false,
+                    });
+                  } else {
+                    updateCommentMade({
+                      ...commentMade,
+                      [`comment-${idx}`]: true,
+                    });
+                  }
+                }}
+              />
 
-                    <FontAwesomeIcon
-                      className="payment-icon"
-                      icon={faDollarSign}
-                      style={{
-                        color: checkValue('payment', idx) ? "green" : "black",
-                      }}
-                      onClick={() => {
-                        if (checkValue('payment', idx)) {
-                          updatePayment({...paymentMade, [`payment-${idx}`]: false });
-                        } else {
-                          updatePayment({...paymentMade, [`payment-${idx}`]: true });
-                        }
-                      }}
-                    />
-                  </div>
-                </div>
-              );
-          }) }
+              <FontAwesomeIcon
+                className="payment-icon"
+                icon={faDollarSign}
+                style={{
+                  color: checkValue("payment", idx) ? "green" : "black",
+                }}
+                onClick={() => {
+                  if (checkValue("payment", idx)) {
+                    updatePayment({
+                      ...paymentMade,
+                      [`payment-${idx}`]: false,
+                    });
+                  } else {
+                    updatePayment({ ...paymentMade, [`payment-${idx}`]: true });
+                  }
+                }}
+              />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
