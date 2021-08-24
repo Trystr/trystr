@@ -1,7 +1,6 @@
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRouter } from "next/router";
 
-//check if you are on the client (browser) or server
 const isBrowser = () => typeof window !== "undefined";
 
 const ProtectedRoute = ({ children }) => {
