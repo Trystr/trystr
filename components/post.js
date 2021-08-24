@@ -10,7 +10,7 @@ import clsx from "clsx";
 
 export default function Post() {
   return (
-    <li className="list-none flex flex-col min-w-96 max-h-screen h-192 bg-white rounded-md shadow px-4 py-5 sm:px-6">
+    <li className="list-none flex flex-col min-w-96 max-h-screen h-192 max-w-screen-md bg-white rounded-md shadow px-4 py-5 sm:px-6">
       <div className="flex space-x-3">
         <div className="flex-shrink-0">
           <img
