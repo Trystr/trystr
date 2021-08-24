@@ -36,10 +36,6 @@ const faqs = [
   },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function About() {
   return (
     <Layout title="About">
@@ -56,7 +52,7 @@ export default function About() {
                       </span>
                       <span className="ml-6 h-7 flex items-center">
                         <ChevronDownIcon
-                          className={classNames(
+                          className={clsx(
                             open ? "-rotate-180" : "rotate-0",
                             "h-6 w-6 transform"
                           )}

@@ -16,7 +16,7 @@ import { LogoutButton } from "./auth";
 const navigation = [
   { name: "Home", href: "/feed", icon: HomeIcon, current: true },
   { name: "About", href: "/about", icon: QuestionMarkCircleIcon, current: false },
-  { name: "User", href: "/profile", icon: UserCircleIcon, current: false },
+  { name: "Profile", href: "/profile", icon: UserCircleIcon, current: false },
   { name: "Messages", href: "/messages", icon: ChatAlt2Icon, current: false },
 ];
 
