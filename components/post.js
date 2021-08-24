@@ -1,15 +1,22 @@
-import { Fragment } from "react";
+import { Fragment, useReducer } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import {
   CodeIcon,
   DotsVerticalIcon,
   FlagIcon,
-  StarIcon,
+  HeartIcon,
 } from "@heroicons/react/solid";
+import {
+  HeartIcon as HeartOutlineIcon,
+  ChatIcon,
+  CurrencyDollarIcon,
+  StarIcon,
+} from "@heroicons/react/outline";
 import clsx from "clsx";
+import { Like } from "./liked";
 
 const menuItems = [
-  { Icon: StarIcon, label: "Add to favorites", link: "#" },
+  // { Icon: StarIcon, label: "Add to favorites", link: "#" },
   { Icon: CodeIcon, label: "Embed", link: "#" },
   { Icon: FlagIcon, label: "Report content", link: "#" },
 ];
@@ -86,9 +93,10 @@ function PostHeader({ name, time }) {
 }
 
 export default function Post() {
-  const { name, time } = {
+  const { name, time, liked } = {
     name: "Chelsea Hagon",
     time: "December 9 at 11:43 AM",
+    liked: false
   }; // TODO: replace me!
   return (
     <li className="list-none flex flex-col min-w-96 max-h-screen h-192 max-w-screen-md bg-white rounded-md shadow px-4 py-5 sm:px-6">
@@ -104,6 +112,37 @@ export default function Post() {
           src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=912&q=80"
         />
       </div>
+
+      <footer className="py-2 w-full">
+        <div className="flex mb-1 justify-between items-center">
+          <div className="flex items-center">
+            <Like liked={liked} />
+            <button className="p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600">
+              <ChatIcon className="h-7 w-7 " />
+            </button>
+            <button className="flex items-center p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600">
+              <CurrencyDollarIcon className="h-7 w-7 mr-1" />
+              SEND TIP
+            </button>
+          </div>
+          <div className="flex items-center">
+            <button className="-mr-2 p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600">
+              <StarIcon className="h-7 w-7" />
+            </button>
+          </div>
+        </div>
+        <div className="flex justify-between items-center">
+          <div className="-mb-3 flex items-center text-sm text-gray-500">
+            <span className="mr-2">
+              <span className="font-bold">420</span> likes
+            </span>
+            &middot;
+            <span className="ml-2">
+              <span className="font-bold">69</span> comments
+            </span>
+          </div>
+        </div>
+      </footer>
     </li>
   );
 }
