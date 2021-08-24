@@ -10,12 +10,13 @@ import {
 import clsx from "clsx";
 import { SidebarLink, Sidebar, OpenSidebar } from "./sidebar";
 import { Profile } from "./profile";
+import { LogoutButton } from "./auth";
 
 // TODO: TD-082321: Setup real navigation with links
 const navigation = [
   { name: "Home", href: "/feed", icon: HomeIcon, current: true },
   { name: "About", href: "/about", icon: QuestionMarkCircleIcon, current: false },
-  { name: "User", href: "/user", icon: UserCircleIcon, current: false },
+  { name: "User", href: "/profile", icon: UserCircleIcon, current: false },
   { name: "Messages", href: "/messages", icon: ChatAlt2Icon, current: false },
 ];
 

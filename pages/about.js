@@ -40,7 +40,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Feed() {
+export default function About() {
   return (
     <Layout title="About">
       <div className="max-w-3xl mx-auto divide-y-2 divide-gray-200">
