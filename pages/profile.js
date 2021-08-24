@@ -2,10 +2,6 @@ import Layout from "../components/layout";
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
-
 export default function Profile() {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
