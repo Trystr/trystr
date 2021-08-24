@@ -14,7 +14,6 @@ const ProtectedRoute = ({ children }) => {
       '/'
   ];
 
-  debugger;
   let pathIsProtected = unprotectedRoutes.indexOf(router.pathname) === -1;
   if (isBrowser() && !isAuthenticated && pathIsProtected) {
     router.push('/');
