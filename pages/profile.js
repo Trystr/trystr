@@ -1,15 +1,15 @@
 import Layout from "../components/layout";
 import { useAuth0 } from "@auth0/auth0-react";
+import { AuthRedirection } from "../components/auth";
 
 
 export default function Profile() {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
   if (!user) {
-    // TODO TD082321: redirect to login
-    return <div></div>
+    AuthRedirection();
+    return <div/>;
   }
-
   return (
     <Layout title="Profile">
       <div className="max-w-3xl mx-auto divide-y-2 divide-gray-200">
@@ -21,4 +21,6 @@ export default function Profile() {
       </div>
     </Layout>
   );
+
+  
 }
