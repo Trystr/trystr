@@ -6,8 +6,6 @@ import { Disclosure } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import clsx from "clsx";
 
-
-
 export default function Index() {
   const { user, error, isLoading } = useUser();
   const router = useRouter();
