@@ -1,13 +1,13 @@
-import { Fragment, useReducer } from "react";
+import { Fragment, useReducer, useRef, } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
   CodeIcon,
   DotsVerticalIcon,
   FlagIcon,
-  HeartIcon,
 } from "@heroicons/react/solid";
 import {
-  HeartIcon as HeartOutlineIcon,
   ChatIcon,
   CurrencyDollarIcon,
   StarIcon,
@@ -19,6 +19,12 @@ const menuItems = [
   // { Icon: StarIcon, label: "Add to favorites", link: "#" },
   { Icon: CodeIcon, label: "Embed", link: "#" },
   { Icon: FlagIcon, label: "Report content", link: "#" },
+];
+
+const images = [
+  "https://images.unsplash.com/photo-1552053831-71594a27632d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=912&q=80",
+  "https://images.unsplash.com/photo-1586671267731-da2cf3ceeb80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1535&q=80",
+  "https://images.unsplash.com/photo-1552053831-71594a27632d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=912&q=80",
 ];
 
 function PostHeader({ name, time }) {
@@ -92,12 +98,56 @@ function PostHeader({ name, time }) {
   );
 }
 
+function PostFooter({ liked }) {
+  return (
+    <footer className="py-2 w-full">
+      <div className="flex mb-1 justify-between items-center">
+        <div className="flex items-center">
+          <Like liked={liked} />
+          <button className="p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600">
+            <ChatIcon className="h-7 w-7 " />
+          </button>
+          <button className="flex items-center p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600">
+            <CurrencyDollarIcon className="h-7 w-7 mr-1" />
+            SEND TIP
+          </button>
+        </div>
+        <div className="flex items-center">
+          <button className="-mr-2 p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600">
+            <StarIcon className="h-7 w-7" />
+          </button>
+        </div>
+      </div>
+      <div className="flex justify-between items-center">
+        <div className="-mb-3 flex items-center text-sm text-gray-500">
+          <span className="mr-2">
+            <span className="font-bold">420</span> likes
+          </span>
+          &middot;
+          <span className="ml-2">
+            <span className="font-bold">69</span> comments
+          </span>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default function Post() {
   const { name, time, liked } = {
     name: "Chelsea Hagon",
     time: "December 9 at 11:43 AM",
-    liked: false
+    liked: false,
   }; // TODO: replace me!
+  const scrollContainer = useRef(null);
+
+  const scrollLeft = () => {
+    scrollContainer.current.scrollBy(-scrollContainer.current.clientWidth, 0);
+  };
+  const scrollRight = () => {
+    scrollContainer.current.scrollBy(scrollContainer.current.clientWidth, 0);
+  };
+
   return (
     <li className="list-none flex flex-col min-w-96 max-h-screen h-192 max-w-screen-md bg-white rounded-md shadow px-4 py-5 sm:px-6">
       <PostHeader name={name} time={time} />
@@ -106,43 +156,30 @@ export default function Post() {
           <div className="w-full border-t border-gray-300" />
         </div>
       </div>
-      <div className="w-full bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden lg:aspect-none">
-        <img
-          className="w-full object-center object-cover lg:w-full"
-          src="https://images.unsplash.com/photo-1552053831-71594a27632d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=912&q=80"
-        />
+      <div
+        className="relative w-full scrollbar-hide h-full bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-y-hidden overflow-x-visible transition-transform lg:aspect-none"
+        style={{ scrollSnapType: 'x mandatory',  scrollBehavior: 'smooth' }}
+        onScroll={(e) => console.log(e.target.scrollLeft)}
+        ref={scrollContainer}
+      >
+        {images.map((src, index) => (
+          <img
+            key={src}
+            className={clsx("absolute transition-all ease-in-out duration-1000 transform w-full object-center object-cover inset-0", { "translate-x-full": index !== 0, "translate-x-0": index === 0 })}
+            style={{ '--tw-translate-x': `${index * 100}%`, scrollSnapAlign: 'start' }}
+            src={src}
+          />
+        ))}
       </div>
-
-      <footer className="py-2 w-full">
-        <div className="flex mb-1 justify-between items-center">
-          <div className="flex items-center">
-            <Like liked={liked} />
-            <button className="p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600">
-              <ChatIcon className="h-7 w-7 " />
-            </button>
-            <button className="flex items-center p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600">
-              <CurrencyDollarIcon className="h-7 w-7 mr-1" />
-              SEND TIP
-            </button>
-          </div>
-          <div className="flex items-center">
-            <button className="-mr-2 p-2 rounded-full flex items-center text-gray-400 hover:text-gray-600">
-              <StarIcon className="h-7 w-7" />
-            </button>
-          </div>
-        </div>
-        <div className="flex justify-between items-center">
-          <div className="-mb-3 flex items-center text-sm text-gray-500">
-            <span className="mr-2">
-              <span className="font-bold">420</span> likes
-            </span>
-            &middot;
-            <span className="ml-2">
-              <span className="font-bold">69</span> comments
-            </span>
-          </div>
-        </div>
-      </footer>
+      <section className="flex justify-between w-full">
+        <button onClick={scrollLeft} className="">
+          <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
+        </button>
+        <button onClick={scrollRight} className="">
+          <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+        </button>
+      </section>
+      <PostFooter liked={liked} />
     </li>
   );
 }
