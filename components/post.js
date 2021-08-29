@@ -98,7 +98,7 @@ function PostHeader({ name, time }) {
   );
 }
 
-function PostFooter({ liked }) {
+function PostFooter({ liked, likes, comments }) {
   return (
     <footer className="py-2 w-full">
       <div className="flex mb-1 justify-between items-center">
@@ -121,11 +121,11 @@ function PostFooter({ liked }) {
       <div className="flex justify-between items-center">
         <div className="-mb-3 flex items-center text-sm text-gray-500">
           <span className="mr-2">
-            <span className="font-bold">420</span> likes
+            <span className="font-bold">{likes}</span> likes
           </span>
           &middot;
           <span className="ml-2">
-            <span className="font-bold">69</span> comments
+            <span className="font-bold">{comments.length}</span> comments
           </span>
         </div>
       </div>
@@ -134,10 +134,12 @@ function PostFooter({ liked }) {
 }
 
 export default function Post() {
-  const { name, time, liked } = {
+  const { name, time, liked, likes, comments } = {
     name: "Chelsea Hagon",
     time: "December 9 at 11:43 AM",
     liked: false,
+    likes: 420,
+    comments: Array.from({ length: 69 }).map((_, i) => i)
   }; // TODO: replace me!
   const scrollContainer = useRef(null);
 
@@ -179,7 +181,7 @@ export default function Post() {
           <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
         </button>
       </section>
-      <PostFooter liked={liked} />
+      <PostFooter liked={liked} likes={likes} comments={comments} />
     </li>
   );
 }
