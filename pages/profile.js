@@ -2,7 +2,6 @@ import Layout from "../components/layout";
 import { useAuth0 } from "@auth0/auth0-react";
 import { AuthRedirection } from "../components/auth";
 
-
 export default function Profile() {
   const { user, isAuthenticated, isLoading } = useAuth0();
 
@@ -21,6 +20,4 @@ export default function Profile() {
       </div>
     </Layout>
   );
-
-  
 }

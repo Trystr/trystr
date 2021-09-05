@@ -1,7 +1,6 @@
-import 'tailwindcss/tailwind.css'
+import "tailwindcss/tailwind.css";
 import { UserProvider } from "@auth0/nextjs-auth0";
-import { Auth0Provider } from '@auth0/auth0-react';
-
+import { Auth0Provider } from "@auth0/auth0-react";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -13,4 +12,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp
+export default MyApp;
