@@ -7,7 +7,7 @@ import {
   UserCircleIcon,
   XIcon,
   LogoutIcon,
-  BriefcaseIcon
+  BriefcaseIcon,
 } from "@heroicons/react/outline";
 import clsx from "clsx";
 import { SidebarLink, Sidebar, OpenSidebar } from "./sidebar";
@@ -33,8 +33,7 @@ const navigation = [
   },
 ];
 
-
-export default function Layout({ children, title }) {
+export default function Layout({ children, title, padding = true, maxWidth = true }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -77,7 +76,6 @@ export default function Layout({ children, title }) {
               >
                 <div className="absolute top-0 right-0 -mr-12 pt-2">
                   <button
-                    type="button"
                     className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                     onClick={() => setSidebarOpen(false)}
                   >
@@ -99,18 +97,23 @@ export default function Layout({ children, title }) {
       <div className="hidden md:flex md:flex-shrink-0">
         <div className="flex flex-col w-64">
           <aside className="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
-            <Sidebar navigation={navigation}  />
+            <Sidebar navigation={navigation} />
           </aside>
         </div>
       </div>
-      <div className="flex flex-col w-0 flex-1 overflow-hidden">
+      <div className="flex flex-col w-0 flex-1 relative">
         <OpenSidebar setSidebarOpen={setSidebarOpen} />
         <main className="flex-1 relative z-0 overflow-y-auto focus:outline-none">
-          <div className="py-6">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-              <h1 className="text-2xl font-semibold text-gray-900">{title}</h1>
-            </div>
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <div className={clsx({ "py-6": padding })}>
+            {title ? (
+              <div className={clsx("mx-auto", { "px-4 sm:px-6 md:px-8": padding, "max-w-7xl": maxWidth })}>
+                <h1 className="text-2xl font-semibold text-gray-900">
+                  {title}
+                </h1>
+              </div>
+            ) : null}
+
+            <div className={clsx("mx-auto", {"px-4 sm:px-6 md:px-8": padding, "max-w-7xl": maxWidth})}>
               {children}
             </div>
           </div>

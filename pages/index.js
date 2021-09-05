@@ -14,6 +14,7 @@ export default function Index() {
   if (error) return <div>{error.message}</div>;
 
   if (user) {
+    console.log(user);
     router.push("/feed");
   }
 
