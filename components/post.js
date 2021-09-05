@@ -69,7 +69,7 @@ function PostHeader({ name, time }) {
             <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
               <div className="py-1">
                 {menuItems.map((item) => (
-                  <Menu.Item>
+                  <Menu.Item key={item.label}>
                     {({ active }) => (
                       <a
                         href={item.link}
@@ -166,7 +166,7 @@ export default function Post() {
       >
         {images.map((src, index) => (
           <img
-            key={src}
+            key={src + index}
             className={clsx("absolute transition-all ease-in-out duration-1000 transform w-full object-center object-cover inset-0", { "translate-x-full": index !== 0, "translate-x-0": index === 0 })}
             style={{ '--tw-translate-x': `${index * 100}%`, scrollSnapAlign: 'start' }}
             src={src}
